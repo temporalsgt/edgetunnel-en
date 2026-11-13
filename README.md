@@ -149,6 +149,54 @@ Then open `https://<your-worker>.pages.dev/admin`.
 
 ---
 
+## 🚀 How to use
+
+After the worker is deployed and the `ADMIN` password is set:
+
+1. **Log in**
+   - Open `https://<your-worker>.pages.dev/login`.
+   - Enter the password stored in the `ADMIN` variable.
+
+2. **Choose a panel mode (optional)**
+   - The panel starts in **Beginner mode**, which shows the most common settings.
+   - Click **🚀 Expert mode: let me tinker!** in the header to show all advanced modules.
+   - Click **🐣 I'm a beginner! Keep it simple!** to return to Beginner mode.
+
+3. **Get a node or subscription**
+   - Open **📋 Get Node Links** in the dashboard.
+   - Copy the format that matches your client:
+
+   | Field | Use with |
+   | --- | --- |
+   | **Node Link** | A single node, useful for a quick test. |
+   | **Adaptive Subscription** | Clients that can detect the subscription format automatically. |
+   | **Base64 Subscription** | v2rayN, v2rayNG, Shadowrocket, and similar clients. |
+   | **Clash Subscription** | Clash, mihomo, Clash Verge Rev, and similar clients. |
+   | **SingBox Subscription** | Sing-box and clients based on it. |
+
+4. **Import it into your client**
+   - Add a new subscription and paste the subscription URL, or import the single node link directly.
+   - Refresh the subscription after changing the configuration.
+
+5. **Change settings**
+   - Open **⚙️ Detailed Configuration** (and the other modules) to change ports, `PROXYIP`, UUID, CDN settings, ECH, and so on.
+   - Click **Save** inside that module.
+   - Refresh the subscription in your client to receive the updated nodes.
+
+6. **Optional modules**
+   - **⚡️ Optimization Subscription** — preferred IPs, speed tests, and custom subscriptions.
+   - **🔐 Encrypted Client Hello** — ECH settings.
+   - **🌐 Cloudflare CDN Access Settings** — CDN and proxy settings.
+   - **🔄 Subscription Conversion** — convert subscriptions through a backend.
+   - **🔔 Notification Settings** — Telegram and Cloudflare notifications.
+   - **📋 View Operation Logs** — login and configuration history.
+   - **🌍 Current Network Info** — current IP and latency checks.
+
+> [!NOTE]
+> Changing `ADMIN`, `KEY`, or `UUID` changes the subscription TOKEN and the node UUID. Re-import or refresh the subscription in your client after changing them.
+
+---
+
 ## 🔑 Environment variables
 
 | Variable | Required | Example | Description |
