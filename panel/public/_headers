@@ -1,0 +1,8 @@
+/admin/*
+  Cache-Control: no-store
+/login
+  Cache-Control: no-store
+/noADMIN
+  Cache-Control: no-store
+/noKV
+  Cache-Control: no-store

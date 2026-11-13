@@ -38,3 +38,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 log/
+
+# 翻译工作文件
+tools/panel_translations.json
+tools/panel_translations.clean.json
+tools/visible_missing.json
