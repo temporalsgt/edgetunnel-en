@@ -24297,8 +24297,8 @@ IP range:
 			if (userMode === 'simple') {
 				return {
 					icon: '🐣',
-					title: '进入小白模式',
-					subtitle: '常用设置已经为你收好'
+					title: 'Entering simple mode',
+					subtitle: 'The essentials are all set for you'
 				};
 			}
 
@@ -24492,7 +24492,7 @@ IP range:
 				localStorage.setItem('userMode', 'simple');
 			} else {
 				cardContainer.classList.remove('simple-mode');
-				btn.textContent = '🐣 我是小白！我想简单点！';
+				btn.textContent = "🐣 I'm a beginner! Keep it simple!";
 				localStorage.setItem('userMode', 'expert');
 			}
 
