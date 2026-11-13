@@ -10,18 +10,18 @@
 
 ## 📖 Introduction
 
-**edgetunnel** is an edge-computing tunneling solution built on the Cloudflare Workers/Pages platform. It handles network traffic efficiently and provides a powerful admin panel with flexible node configuration.
+**edgetunnel** is an edge-computing tunneling solution built on the Cloudflare Pages platform. It handles network traffic efficiently and provides a powerful admin panel with flexible node configuration.
 
 > **This repository is an English-panel fork of [cmliu/edgetunnel](https://github.com/cmliu/edgetunnel).**
-> The tunnel and protocol logic is unchanged. The login page, admin dashboard, dialogs, buttons, tooltips, and error pages are translated into English. Internal configuration keys keep their original names so the worker and existing KV data remain compatible.
+> The tunnel and protocol logic is unchanged. The login page, admin dashboard, dialogs, buttons, tooltips, and error pages are translated into English. Internal configuration keys keep their original names so the app and existing KV data remain compatible.
 
 ### 🍴 About this fork
 
 - English UI for `/login`, `/admin`, `/noADMIN`, and `/noKV`.
-- The worker supports an optional `PAGES_URL` environment variable. When it is set, panel pages are proxied from that origin. When it is unset, this fork uses its default English panel.
+- The Pages project supports an optional `PAGES_URL` environment variable. When it is set, panel pages are proxied from that origin. When it is unset, this fork uses its default English panel.
 - No changes to VLESS/Trojan/Shadowsocks handling, subscription generation, KV keys, or API routes.
 - This fork's deployment:
-  - Worker / main site: <https://edgetunnel-en-b1g.pages.dev>
+  - Main site: <https://edgetunnel-en-b1g.pages.dev>
   - Admin login: <https://edgetunnel-en-b1g.pages.dev/login>
   - Admin panel: <https://edgetunnel-en-b1g.pages.dev/admin>
   - Static panel project: <https://edgetunnel-en-panel.pages.dev>
@@ -30,7 +30,7 @@
 
 - 🛡️ **Protocol support**: VLESS, Trojan, Shadowsocks, and other mainstream protocols with deep integration of encrypted transport.
 - 📊 **Admin panel**: a built-in visual dashboard for live configuration changes, operation logs, and traffic statistics.
-- 🛠️ **Flexible deployment**: fully supports Cloudflare Workers and Cloudflare Pages (GitHub integration or direct upload).
+- 🛠️ **Flexible deployment**: fully supports Cloudflare Pages (GitHub integration or direct upload).
 - 🔄 **Subscription system**: automatic subscription generation and obfuscation conversion, compatible with popular clients such as Clash, Sing-box, and Surge.
 - ⚡ **Performance acceleration**: custom ProxyIP, SOCKS5/HTTP chain proxies, and preferred-IP APIs to reduce network latency.
 - 🌐 **Cross-platform**: works with Windows, Android, iOS, macOS, and common router firmware.
@@ -45,29 +45,7 @@
 > [!WARNING]
 > ⚠️ **Error 1101**: [video walkthrough](https://www.youtube.com/watch?v=r4uVTEJptdE)
 
-### ⚙️ Workers deployment
-
-<details>
-<summary><code><strong>Workers deployment — text guide</strong></code></summary>
-
-1. Deploy a Cloudflare Worker:
-   - Create a new Worker in the Cloudflare dashboard.
-   - Paste the contents of [_worker.js](https://github.com/temporalsgt/edgetunnel-en/blob/main/_worker.js) into the Worker editor.
-   - Open `Settings` → `Variables` → `Add variable`.
-     Set the variable name to **ADMIN** and the value to your admin password, then click `Save`.
-
-2. Bind a KV namespace:
-   - Open `Bindings` → `Add binding` → `KV namespace`, then select an existing namespace or create a new one.
-   - Set the variable name to **KV**, then click `Add binding`.
-
-3. Attach a custom domain to the Worker:
-   - Open the Worker's `Triggers` tab and click `Add custom domain`.
-   - Enter a subdomain that is already managed by Cloudflare, for example `vless.example.com`, then click `Add custom domain` and wait for the certificate to become active.
-
-4. Open the admin panel:
-   - Visit `https://vless.example.com/admin` and enter your admin password.
-
-</details>
+The main app is deployed as a Cloudflare Pages project. The English panel is hosted separately at `https://edgetunnel-en-panel.pages.dev` and is proxied automatically, so you do not need to deploy the panel yourself.
 
 ### 🛠️ Pages upload deployment **Recommended** — [guide](https://cmliussss.com/p/edt2/)
 
@@ -87,11 +65,11 @@
 
 3. Attach a custom domain to Pages: [video guide](https://www.youtube.com/watch?v=LeT4jQUh8ok&t=851s)
    - Open the Pages project's `Custom domains` tab and click `Set up a custom domain`.
-   - Enter a subdomain, not your root domain. For example, if your assigned domain is `example.com`, use `panel.example.com`.
+   - Enter a subdomain, not your root domain. For example, if your assigned domain is `example.com`, use `edgetunnel.example.com`.
    - At your DNS provider, add the CNAME record requested by Cloudflare, using the `pages.dev` target shown in your Pages project (for example `your-project.pages.dev`). Then click `Activate domain`.
 
 4. Open the admin panel:
-   - Visit `https://panel.example.com/admin` and enter your admin password.
+   - Visit `https://edgetunnel.example.com/admin` and enter your admin password.
 
 </details>
 
@@ -102,7 +80,7 @@
 
 1. Deploy Cloudflare Pages:
    - Fork this repository on GitHub and give it a Star.
-   - In the Cloudflare Pages dashboard, choose `Connect to Git`, select the `edgetunnel-en` project, and click `Begin setup`.
+   - In the Cloudflare Pages dashboard, choose `Connect to Git`, select your fork of `edgetunnel-en`, and click `Begin setup`.
    - On the `Set up builds and deployments` page, open `Environment variables (advanced)` and click `Add variable`.
      Set the variable name to **ADMIN** and the value to your admin password, then click `Save and deploy`.
 
@@ -112,88 +90,13 @@
 
 3. Attach a custom domain to Pages: [video guide](https://www.youtube.com/watch?v=LeT4jQUh8ok&t=851s)
    - Open the Pages project's `Custom domains` tab and click `Set up a custom domain`.
-   - Enter a subdomain, not your root domain. For example, if your assigned domain is `example.com`, use `panel.example.com`.
+   - Enter a subdomain, not your root domain. For example, if your assigned domain is `example.com`, use `edgetunnel.example.com`.
    - At your DNS provider, add the CNAME record requested by Cloudflare, using the `pages.dev` target shown in your Pages project. Then click `Activate domain`.
 
 4. Open the admin panel:
-   - Visit `https://panel.example.com/admin` and enter your admin password.
+   - Visit `https://edgetunnel.example.com/admin` and enter your admin password.
 
 </details>
-
-### ⚡ Deploy with Wrangler
-
-Panel (static site):
-
-```bash
-cd panel
-wrangler pages project create edgetunnel-en-panel --production-branch main --force
-wrangler pages deploy --branch main
-```
-
-Worker (Cloudflare Pages, direct upload):
-
-```bash
-# Create the Pages project once
-wrangler pages project create edgetunnel-en --production-branch main --force
-
-# Set the admin password once
-wrangler pages secret put ADMIN --project-name edgetunnel-en
-
-# Deploy the worker with its KV binding and panel origin
-KV_ID=<kv-namespace-id> \
-PAGES_URL=https://edgetunnel-en-panel.pages.dev \
-./scripts/deploy-pages-worker.sh edgetunnel-en
-```
-
-Then open `https://<your-worker>.pages.dev/admin`.
-
----
-
-## 🚀 How to use
-
-After the worker is deployed and the `ADMIN` password is set:
-
-1. **Log in**
-   - Open `https://<your-worker>.pages.dev/login`.
-   - Enter the password stored in the `ADMIN` variable.
-
-2. **Choose a panel mode (optional)**
-   - The panel starts in **Beginner mode**, which shows the most common settings.
-   - Click **🚀 Expert mode: let me tinker!** in the header to show all advanced modules.
-   - Click **🐣 I'm a beginner! Keep it simple!** to return to Beginner mode.
-
-3. **Get a node or subscription**
-   - Open **📋 Get Node Links** in the dashboard.
-   - Copy the format that matches your client:
-
-   | Field | Use with |
-   | --- | --- |
-   | **Node Link** | A single node, useful for a quick test. |
-   | **Adaptive Subscription** | Clients that can detect the subscription format automatically. |
-   | **Base64 Subscription** | v2rayN, v2rayNG, Shadowrocket, and similar clients. |
-   | **Clash Subscription** | Clash, mihomo, Clash Verge Rev, and similar clients. |
-   | **SingBox Subscription** | Sing-box and clients based on it. |
-
-4. **Import it into your client**
-   - Add a new subscription and paste the subscription URL, or import the single node link directly.
-   - Refresh the subscription after changing the configuration.
-
-5. **Change settings**
-   - Open **⚙️ Detailed Configuration** (and the other modules) to change ports, `PROXYIP`, UUID, CDN settings, ECH, and so on.
-   - Click **Save** inside that module.
-   - Refresh the subscription in your client to receive the updated nodes.
-
-6. **Optional modules**
-   - **⚡️ Optimization Subscription** — preferred IPs, speed tests, and custom subscriptions.
-   - **🔐 Encrypted Client Hello** — ECH settings.
-   - **🌐 Cloudflare CDN Access Settings** — CDN and proxy settings.
-   - **🔄 Subscription Conversion** — convert subscriptions through a backend.
-   - **🔔 Notification Settings** — Telegram and Cloudflare notifications.
-   - **📋 View Operation Logs** — login and configuration history.
-   - **🌍 Current Network Info** — current IP and latency checks.
-
-> [!NOTE]
-> Changing `ADMIN`, `KEY`, or `UUID` changes the subscription TOKEN and the node UUID. Re-import or refresh the subscription in your client after changing them.
 
 ---
 
