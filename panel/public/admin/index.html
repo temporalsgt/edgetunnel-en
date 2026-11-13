@@ -24199,7 +24199,7 @@ IP range:
 			document.querySelectorAll('.module').forEach((module, index) => {
 				const title = module.querySelector('.module-title')?.textContent?.trim() || ('module-' + index);
 				// 不保存"查看操作日志"和"当前网络信息"模块的状态
-				if (title !== '📋 查看操作日志' && title !== '🌍 当前网络信息' && module.id !== 'preferredSubscriptionModule') {
+				if (title !== '📋 View Operation Logs' && title !== '🌍 Current Network Info' && module.id !== 'preferredSubscriptionModule') {
 					states[title] = !module.classList.contains('collapsed');
 				}
 			});
@@ -24219,9 +24219,9 @@ IP range:
 				let shouldBeExpanded;
 
 				// "查看操作日志"模块始终保持折叠状态，"当前网络信息"模块始终展开
-				if (title === '📋 查看操作日志') {
+				if (title === '📋 View Operation Logs') {
 					shouldBeExpanded = false;
-				} else if (title === '🌍 当前网络信息') {
+				} else if (title === '🌍 Current Network Info') {
 					shouldBeExpanded = true;
 				} else if (module.id === 'preferredSubscriptionModule') {
 					shouldBeExpanded = true;
@@ -24256,7 +24256,7 @@ IP range:
 
 		async function refreshConfig() {
 			await loadConfig();
-			const loadTime = currentConfig.加载时间 || '未知';
+			const loadTime = currentConfig.加载时间 || 'Unknown';
 			showToast(`配置已刷新 (加载时间: ${loadTime})`, 'success');
 		}
 
@@ -24807,7 +24807,7 @@ IP range:
 				copyBtn.setAttribute('aria-label', meta ? `${label}：${meta}` : (label || ''));
 			}
 			if (copyBtnLabel && copyBtn?.disabled) {
-				copyBtnLabel.textContent = badgeKey === 'fail' ? '源码重组失败' : '🔐 等待源码混淆重组';
+				copyBtnLabel.textContent = badgeKey === 'fail' ? 'Source restructuring failed' : '🔐 Waiting for source obfuscation';
 			}
 		}
 
@@ -25554,9 +25554,9 @@ IP range:
 
 				recentLogs.forEach(log => {
 					const logType = translateLogType(log.TYPE, log.UA);
-					const cc = log.CC || '未知';
+					const cc = log.CC || 'Unknown';
 					const timeStr = formatTime(log.TIME);
-					const ip = log.IP || '未知';
+					const ip = log.IP || 'Unknown';
 
 					if (isMobile) {
 						// 移动设备：不显示地区
@@ -25598,10 +25598,10 @@ IP range:
 
 				sortedLogs.forEach(log => {
 					const logType = translateLogType(log.TYPE, log.UA);
-					const cc = log.CC || '未知';
-					const asn = log.ASN || '未知';
+					const cc = log.CC || 'Unknown';
+					const asn = log.ASN || 'Unknown';
 					const timeStr = formatTime(log.TIME);
-					const ip = log.IP || '未知';
+					const ip = log.IP || 'Unknown';
 					const url = log.URL || '无';
 					const ua = log.UA ? log.UA.substring(0, 60) : '无';
 
@@ -25756,14 +25756,14 @@ IP range:
 					statusEl.style.background = 'linear-gradient(135deg, #ef4444 0, #dc2626 100%)';
 					statusEl.style.padding = '16px';
 					statusEl.style.borderRadius = '8px';
-					statusEl.innerHTML = `❌ <strong>代理无效</strong><br/><small style="opacity: 0.9;">${data.error || '未知错误'}</small>`;
+					statusEl.innerHTML = `❌ <strong>代理无效</strong><br/><small style="opacity: 0.9;">${data.error || 'Unknown error'}</small>`;
 					document.getElementById('proxyConfirmBtn').disabled = true;
 					document.getElementById('proxyConfirmBtn').style.opacity = '0.5';
 				} else if (data.success === true) {
-					const ip = data.ip || '未知';
-					const loc = data.loc || '未知';
+					const ip = data.ip || 'Unknown';
+					const loc = data.loc || 'Unknown';
 					const responseTime = data.responseTime || 0;
-					const responseTimeDisplay = responseTime > 0 ? `${responseTime}ms` : '未知';
+					const responseTimeDisplay = responseTime > 0 ? `${responseTime}ms` : 'Unknown';
 
 					statusEl.style.background = 'linear-gradient(135deg, #10b981 0, #059669 100%)';
 					statusEl.style.padding = '16px';
@@ -25909,7 +25909,7 @@ IP range:
 			if (cleanIp.includes('*') && targetElement && targetElement.dataset && targetElement.dataset.rawValue) {
 				cleanIp = String(targetElement.dataset.rawValue || '').trim();
 			}
-			if (!cleanIp || cleanIp === '未知') {
+			if (!cleanIp || cleanIp === 'Unknown') {
 				return;
 			}
 
@@ -26351,10 +26351,10 @@ IP range:
 			addressInput.value = cleanAddress;
 
 			const loc = proxyData
-				? `[${proxyData.country || '未知'}]${proxyData.country_cn || proxyData.country_en || ''}`
-				: '未知';
-			const ip = (proxyData && (proxyData.clientIp || proxyData.ip)) || '未知';
-			const latency = status && status.responseTime > 0 ? `${status.responseTime}ms` : '未知';
+				? `[${proxyData.country || 'Unknown'}]${proxyData.country_cn || proxyData.country_en || ''}`
+				: 'Unknown';
+			const ip = (proxyData && (proxyData.clientIp || proxyData.ip)) || 'Unknown';
+			const latency = status && status.responseTime > 0 ? `${status.responseTime}ms` : 'Unknown';
 			const defaultNodeName = buildChainProxyDefaultNodeName(loc, cleanProtocol);
 			if (nodeNameInput && !String(nodeNameInput.value || '').trim()) {
 				nodeNameInput.placeholder = defaultNodeName;
@@ -26543,7 +26543,7 @@ IP range:
 				</div>
 				<div class="chain-map-info-row">
 					<span class="chain-map-info-label">运营商</span>
-					<span class="chain-map-info-value is-wrap">${safe(proxyData.asOrganization || '未知')}</span>
+					<span class="chain-map-info-value is-wrap">${safe(proxyData.asOrganization || 'Unknown')}</span>
 				</div>
 			`;
 		}
@@ -26621,7 +26621,7 @@ IP range:
 			regionSignature: ''
 		};
 
-		// 两位字母国家码 -> 区域指示符（🇯🇵 这种旗帜 emoji），非法码/未知地区返回白旗
+		// 两位字母国家码 -> 区域指示符（🇯🇵 这种旗帜 emoji），非法码/Unknown region返回白旗
 		function buildCountryFlagEmoji(code) {
 			const clean = String(code || '').trim().toUpperCase();
 			if (!/^[A-Z]{2}$/.test(clean) || clean === CHAIN_SSTP_UNKNOWN_REGION) return '🏳️';
@@ -26675,7 +26675,7 @@ IP range:
 			const knownLoc = loc && loc !== CHAIN_SSTP_UNKNOWN_REGION;
 			const regionLabel = knownLoc
 				? `${entry.country_emoji || buildCountryFlagEmoji(loc)}${loc}`
-				: '未知地区';
+				: 'Unknown region';
 			return `${emoji}[${statusText}]${regionLabel} · ${extractChainSstpHostPort(entry.proxy)}`;
 		}
 
@@ -26747,7 +26747,7 @@ IP range:
 				const current = status[entry.proxy];
 				if (!current || current.status !== 'success') return;
 				const loc = String(current.loc || '').trim().toUpperCase();
-				// 地区分类只用 loc 原值：不查表、不做格式过滤，空 loc 才落「未知地区」
+				// 地区分类只用 loc 原值：不查表、不做格式过滤，空 loc 才落「Unknown region」
 				const region = loc || CHAIN_SSTP_UNKNOWN_REGION;
 				entry.country = region;
 				entry.country_emoji = buildCountryFlagEmoji(region);
@@ -26964,9 +26964,9 @@ IP range:
 			if (!cleanAddress) return;
 
 			const regionCode = entry.country || status.loc || '';
-			const loc = `[${regionCode || '未知'}]`;
-			const ip = entry.ip || status.ip || '未知';
-			const latency = status.responseTime > 0 ? `${status.responseTime}ms` : '未知';
+			const loc = `[${regionCode || 'Unknown'}]`;
+			const ip = entry.ip || status.ip || 'Unknown';
+			const latency = status.responseTime > 0 ? `${status.responseTime}ms` : 'Unknown';
 			const previewHost = normalizeChainProxyPreferredHost(
 				document.getElementById('chainProxyHost')?.value || getDefaultChainProxyHost()
 			);
@@ -27270,7 +27270,7 @@ IP range:
 
 		function extractChainProxyCountryCode(loc) {
 			const value = String(loc || '').trim().toUpperCase();
-			if (!value || value === '未知') return '';
+			if (!value || value === 'Unknown') return '';
 
 			const bracketMatch = value.match(/\[([A-Z]{2})\]/);
 			if (bracketMatch) return bracketMatch[1];
@@ -27304,10 +27304,10 @@ IP range:
 				proxyAddress,
 				sourceTag
 			} = options || {};
-			const safeIp = escapeMarkdownHtml(ip || '未知');
-			const safeLoc = escapeMarkdownHtml(loc || '未知');
-			const safeResponseTime = escapeMarkdownHtml(responseTimeDisplay || '未知');
-			const safeBadgeRegion = escapeMarkdownHtml(extractChainProxyCountryCode(loc) || loc || '未知');
+			const safeIp = escapeMarkdownHtml(ip || 'Unknown');
+			const safeLoc = escapeMarkdownHtml(loc || 'Unknown');
+			const safeResponseTime = escapeMarkdownHtml(responseTimeDisplay || 'Unknown');
+			const safeBadgeRegion = escapeMarkdownHtml(extractChainProxyCountryCode(loc) || loc || 'Unknown');
 			const safePreferred = escapeMarkdownHtml(buildChainProxyPreferredEndpoint(preferredHost, preferredPort));
 			const safeProtocol = escapeMarkdownHtml(protocol || 'socks5');
 			const safeProtocolLabel = escapeMarkdownHtml(`${protocol || 'socks5'}代理`);
@@ -27407,7 +27407,7 @@ IP range:
 				}
 
 				if (data.success === false) {
-					showChainProxyStatus(`❌ <strong>代理无效</strong><br><small style="opacity: 0.9;">${escapeMarkdownHtml(data.error || '未知错误')}</small>`, 'error', true);
+					showChainProxyStatus(`❌ <strong>代理无效</strong><br><small style="opacity: 0.9;">${escapeMarkdownHtml(data.error || 'Unknown error')}</small>`, 'error', true);
 					return;
 				}
 
@@ -27418,10 +27418,10 @@ IP range:
 					return;
 				}
 
-				const ip = data.ip || '未知';
-				const loc = data.loc || '未知';
+				const ip = data.ip || 'Unknown';
+				const loc = data.loc || 'Unknown';
 				const responseTime = data.responseTime || 0;
-				const responseTimeDisplay = responseTime > 0 ? `${responseTime}ms` : '未知';
+				const responseTimeDisplay = responseTime > 0 ? `${responseTime}ms` : 'Unknown';
 				const defaultNodeName = buildChainProxyDefaultNodeName(loc, protocol);
 				const nodeNameInput = document.getElementById('chainProxyNodeName');
 				if (nodeNameInput && !String(nodeNameInput.value || '').trim()) {
@@ -28385,7 +28385,7 @@ IP range:
 				const getMeResult = await requestTelegram('getMe');
 				const getMeData = getMeResult.data;
 				if (!getMeData.ok) {
-					throw new Error('Bot Token 无效: ' + (getMeData.description || '未知错误'));
+					throw new Error('Bot Token 无效: ' + (getMeData.description || 'Unknown error'));
 				}
 
 				// 第二步：通过Bot Token向Chat ID推送测试消息
@@ -28396,7 +28396,7 @@ IP range:
 				const sendResult = await requestTelegram('sendMessage', sendUrlParams, getMeResult.base);
 				const sendData = sendResult.data;
 				if (!sendData.ok) {
-					throw new Error('Chat ID 无效: ' + (sendData.description || '未知错误'));
+					throw new Error('Chat ID 无效: ' + (sendData.description || 'Unknown error'));
 				}
 
 				console.log(`[TelegramBot] 验证成功，当前接口: ${sendResult.base}`);
@@ -28469,7 +28469,7 @@ IP range:
 					}, 1000);
 				} else {
 					const errorData = await response.json();
-					showToast('❌ 保存失败: ' + (errorData.error || '未知错误'), 'error');
+					showToast('❌ 保存失败: ' + (errorData.error || 'Unknown error'), 'error');
 					confirmBtn.disabled = false;
 					confirmBtn.textContent = '保存';
 				}
@@ -28725,7 +28725,7 @@ IP range:
 					}, 1000);
 				} else {
 					const errorData = await response.json();
-					showToast('❌ 保存失败: ' + (errorData.error || '未知错误'), 'error');
+					showToast('❌ 保存失败: ' + (errorData.error || 'Unknown error'), 'error');
 					confirmBtn.disabled = false;
 					confirmBtn.textContent = '保存';
 				}
@@ -28789,7 +28789,7 @@ IP range:
 						location.reload();
 					}, 1000);
 				} else {
-					showToast('❌ 清除失败: ' + (data.message || '未知错误'), 'error');
+					showToast('❌ 清除失败: ' + (data.message || 'Unknown error'), 'error');
 				}
 			} catch (error) {
 				showToast('❌ 清除出错: ' + error.message, 'error');
@@ -28824,7 +28824,7 @@ IP range:
 						location.reload();
 					}, 1000);
 				} else {
-					showToast('❌ 清除失败: ' + (data.message || '未知错误'), 'error');
+					showToast('❌ 清除失败: ' + (data.message || 'Unknown error'), 'error');
 				}
 			} catch (error) {
 				showToast('❌ 清除出错: ' + error.message, 'error');
@@ -29793,7 +29793,7 @@ IP range:
 
 		function maskNetworkIpValue(ip) {
 			const value = String(ip || '').trim();
-			if (!value || value === '未知') return value;
+			if (!value || value === 'Unknown') return value;
 
 			if (value.includes('.') && !value.includes(':')) {
 				const parts = value.split('.');
@@ -29824,7 +29824,7 @@ IP range:
 
 		function maskNetworkLocationValue(location) {
 			const value = String(location || '').trim();
-			if (!value || value === '未知') return value;
+			if (!value || value === 'Unknown') return value;
 
 			const tokens = value.split(/\s+/).filter(Boolean);
 			if (!tokens.length) return value;
@@ -30000,8 +30000,10 @@ IP range:
 			if (!networkCard) return;
 
 			const countryText = String(countryElement.dataset.rawValue || countryElement.textContent || '').trim();
-			const codeMatch = countryText.match(/\b([a-zA-Z]{2})\b/);
-			const countryCode = codeMatch ? codeMatch[1].toLowerCase() : '';
+			// Only treat a leading token as a country code ("ID SIN", "US AS...");
+			// avoid matching random two-letter words later in the location text.
+			const firstToken = countryText.split(/[\s[]+/)[0] || '';
+			const countryCode = /^[a-zA-Z]{2}$/.test(firstToken) ? firstToken.toLowerCase() : '';
 
 			if (!countryCode) {
 				networkCard.classList.remove('has-flag-badge');
@@ -30105,6 +30107,22 @@ IP range:
 				{
 					name: 'cm-cf',
 					url: `https://api.090227.xyz/api/ipsb?ip=${encodeURIComponent(requestIp)}`
+				},
+				{
+					name: 'ipapi.is',
+					url: `https://api.ipapi.is/?q=${encodeURIComponent(requestIp)}`,
+					// ipapi.is returns a flat payload without an ISO country code.
+					// Normalize it to the shape formatIpInfoLocation() expects.
+					normalize: d => {
+						const asnRaw = String(d.asn || '').trim();
+						const asnMatch = asnRaw.match(/^AS(\d+)\s*(.*)$/i);
+						return {
+							ip: d.ip,
+							country_code: d.cc || d.country_code || d.country || '',
+							asn: asnMatch ? asnMatch[1] : asnRaw,
+							as_name: asnMatch ? (asnMatch[2] || d.company || '') : (d.company || '')
+						};
+					}
 				}
 			];
 
@@ -30117,7 +30135,7 @@ IP range:
 				if (!data || typeof data !== 'object') {
 					throw new Error(`${api.name} invalid payload`);
 				}
-				return data;
+				return typeof api.normalize === 'function' ? api.normalize(data) : data;
 			});
 
 			try {
@@ -30128,7 +30146,7 @@ IP range:
 		}
 
 		function formatIpInfoLocation(info) {
-			const countryCode = String(info?.country_code || '未知').trim() || '未知';
+			const countryCode = String(info?.country_code || 'Unknown').trim() || 'Unknown';
 			const rawAsn = info?.asn;
 			const asnText = rawAsn === undefined || rawAsn === null
 				? ''
@@ -30141,7 +30159,7 @@ IP range:
 				''
 			).trim();
 
-			return `${countryCode} ${asnText} ${asnName}`.trim() || '未知';
+			return `${countryCode} ${asnText} ${asnName}`.trim() || 'Unknown';
 		}
 
 		function createIpProbeRequestTask(sourceConfig) {
@@ -30332,7 +30350,7 @@ IP range:
 				return;
 			}
 
-			const fallbackIp = String(fastestSuccess.requestIp || '未知').trim() || '未知';
+			const fallbackIp = String(fastestSuccess.requestIp || 'Unknown').trim() || 'Unknown';
 			setNetworkFieldValue('ipip-ip', fallbackIp, 'ip');
 			clearNetworkFieldValue('ipip-country');
 			applyNetworkCardFlag('ipip-country');
@@ -30344,20 +30362,39 @@ IP range:
 
 			try {
 				const info = await fetchIpInfoByIp(fastestSuccess.requestIp);
-				const ip = String(info.ip || fastestSuccess.requestIp || '未知').trim();
+				const ip = String(info.ip || fastestSuccess.requestIp || 'Unknown').trim();
 				const location = formatIpInfoLocation(info);
 
 				setNetworkFieldValue('ipip-ip', ip, 'ip');
-				setNetworkFieldValue('ipip-country', location || '未知', 'location');
+				setNetworkFieldValue('ipip-country', location || 'Unknown', 'location');
 				applyNetworkCardFlag('ipip-country');
 				setStatus('status-ipip', 'success');
 				console.log(`[Domestic Test] 成功: IP=${ip}, 位置=${location}, 来源=${fastestSuccess.source}`);
 			} catch (detailError) {
-				setNetworkFieldValue('ipip-country', '未知', 'location');
+				setNetworkFieldValue('ipip-country', 'Unknown', 'location');
 				applyNetworkCardFlag('ipip-country');
 				setStatus('status-ipip', 'success');
 				console.warn(`[Domestic Test] 已获取IP=${fallbackIp}，但查询详细信息失败:`, detailError);
 			}
+		}
+
+		// Fallback: Cloudflare's own trace endpoint works even when third-party
+		// IP echo services are blocked by WAF/geo rules. It returns plain text
+		// and intentionally responds with HTTP 404, so do not check response.ok.
+		async function fetchCloudflareTraceInfo() {
+			const response = await fetchWithTimeout(`/cdn-cgi/trace?_t=${Date.now()}`, { cache: 'no-store' });
+			const text = await response.text();
+			const data = {};
+			for (const line of text.trim().split('\n')) {
+				const idx = line.indexOf('=');
+				if (idx > 0) data[line.slice(0, idx)] = line.slice(idx + 1);
+			}
+			if (!data.ip) throw new Error('missing ip in trace');
+			return {
+				ip: data.ip,
+				loc: `${data.loc || 'Unknown'}${data.colo ? ' ' + data.colo : ''}`.trim(),
+				colo: data.colo || ''
+			};
 		}
 
 		// 获取国外测试数据
@@ -30368,12 +30405,12 @@ IP range:
 				/*
 				{
 					url: `https://api.ipapi.is`,
-					parse: d => ({ ip: d.ip, loc: `${d.cc || '未知'} AS${d.asn_num || ''} ${d.asn_org || ''}`.trim() })
+					parse: d => ({ ip: d.ip, loc: `${d.cc || 'Unknown'} AS${d.asn_num || ''} ${d.asn_org || ''}`.trim() })
 				},
 				*/
 				{
 					url: `https://api.cmliussss.net/api/ipinfo`,
-					parse: d => ({ ip: d.ip, loc: `${d.country_code || '未知'} ${d.asn || ''} ${d.as_name || ''}`.trim() })
+					parse: d => ({ ip: d.ip, loc: `${d.country_code || 'Unknown'} ${d.asn || ''} ${d.as_name || ''}`.trim() })
 				}
 			];
 
@@ -30389,7 +30426,7 @@ IP range:
 						});
 						if (!response.ok) throw new Error(`HTTP ${response.status}`);
 						const { ip, loc } = api.parse(await response.json());
-						const edgeIp = ip || '未知';
+						const edgeIp = ip || 'Unknown';
 
 						return { edgeIp, loc, url: api.url };
 					})().catch(error => {
@@ -30403,13 +30440,26 @@ IP range:
 				const { edgeIp, loc } = await Promise.any(requestTasks.map(task => task.promise));
 				requestTasks.forEach(task => task.cancel && task.cancel());
 				setNetworkFieldValue('overseas-ip', edgeIp, 'ip');
-				setNetworkFieldValue('overseas-country', loc || '未知', 'location');
+				setNetworkFieldValue('overseas-country', loc || 'Unknown', 'location');
 				applyNetworkCardFlag('overseas-country');
 				setStatus('status-overseas', 'success');
 				console.log(`[国外测试] 成功: IP=${edgeIp}, 位置=${loc}`);
 				return;
 			} catch (error) {
 				requestTasks.forEach(task => task.cancel && task.cancel());
+			}
+
+			// Fallback to Cloudflare's trace endpoint before giving up.
+			try {
+				const trace = await fetchCloudflareTraceInfo();
+				setNetworkFieldValue('overseas-ip', trace.ip, 'ip');
+				setNetworkFieldValue('overseas-country', trace.loc || 'Unknown', 'location');
+				applyNetworkCardFlag('overseas-country');
+				setStatus('status-overseas', 'success');
+				console.log(`[Overseas Test] trace fallback: IP=${trace.ip}, location=${trace.loc}`);
+				return;
+			} catch (traceError) {
+				console.warn('[Overseas Test] trace fallback failed:', traceError);
 			}
 
 			// 所有 API 都失败
@@ -30473,7 +30523,7 @@ IP range:
 		function formatCloudFlareLocation(data) {
 			const country = String(data?.country || '').trim();
 			const org = String(data?.org || '').trim();
-			return `${country} ${org}`.trim() || '未知';
+			return `${country} ${org}`.trim() || 'Unknown';
 		}
 
 		function resetCloudFlareSubtitle() {
@@ -30543,7 +30593,7 @@ IP range:
 
 			const activeEntry = cloudFlareEntries[cloudFlareActiveIndex];
 			setNetworkFieldValue('cf-ip', activeEntry.ip, 'ip');
-			setNetworkFieldValue('cf-country', activeEntry.loc || '未知', 'location');
+			setNetworkFieldValue('cf-country', activeEntry.loc || 'Unknown', 'location');
 			applyNetworkCardFlag('cf-country');
 			renderCloudFlareSubtitle();
 		}
@@ -30605,6 +30655,19 @@ IP range:
 					seenEntryKeys.add(dedupeKey);
 					availableEntries.push(entry);
 				});
+
+				if (!availableEntries.length) {
+					try {
+						const trace = await fetchCloudflareTraceInfo();
+						const version = detectIpVersion(trace.ip);
+						if (version) {
+							availableEntries.push({ ip: trace.ip, version, loc: trace.loc });
+							console.log(`[CloudFlare] trace fallback: IP=${trace.ip}, location=${trace.loc}`);
+						}
+					} catch (traceError) {
+						console.warn('[CloudFlare] trace fallback failed:', traceError);
+					}
+				}
 
 				if (!availableEntries.length) {
 					throw new Error('no valid cloudflare ip from all endpoints');
@@ -30706,7 +30769,7 @@ IP range:
 				twitterActiveIndex = Math.min(Math.max(twitterActiveIndex, 0), twitterEntries.length - 1);
 				const activeEntry = twitterEntries[twitterActiveIndex];
 				setNetworkFieldValue('twitter-ip', activeEntry.ip, 'ip');
-				setNetworkFieldValue('twitter-country', activeEntry.loc || '未知', 'location');
+				setNetworkFieldValue('twitter-country', activeEntry.loc || 'Unknown', 'location');
 				applyNetworkCardFlag('twitter-country');
 				if (tipElement) {
 					tipElement.textContent = `· The IP used to access ${activeEntry.providerName}`;
@@ -30811,14 +30874,14 @@ IP range:
 						const info = await fetchIpInfoByIp(result.requestIp);
 						return {
 							providerName: result.providerName,
-							ip: String(info.ip || result.requestIp || '未知').trim(),
+							ip: String(info.ip || result.requestIp || 'Unknown').trim(),
 							loc: formatIpInfoLocation(info)
 						};
 					} catch {
 						return {
 							providerName: result.providerName,
-							ip: String(result.requestIp || '未知').trim(),
-							loc: '未知'
+							ip: String(result.requestIp || 'Unknown').trim(),
+							loc: 'Unknown'
 						};
 					}
 				});
@@ -30893,11 +30956,11 @@ IP range:
 			ipElements.forEach(element => {
 				const rawIpText = String(element.dataset.rawValue || element.textContent || '').trim();
 
-				// 跳过已经标记为错误、加载中、未知的元素
+				// 跳过已经标记为错误、加载中、Unknown的元素
 				if (element.querySelector('.error') ||
 					element.dataset.displayState === 'error' ||
 					rawIpText === '加载中...' ||
-					rawIpText === '未知' ||
+					rawIpText === 'Unknown' ||
 					!rawIpText ||
 					element.classList.contains('clickable')) {
 					return;
@@ -30917,7 +30980,7 @@ IP range:
 					const rawIp = String(this.dataset.rawValue || this.textContent || '').trim();
 
 					// 跳过显示"加载中..."或"Unknown"的元素
-					if (!rawIp || rawIp === '加载中...' || rawIp === '未知') {
+					if (!rawIp || rawIp === '加载中...' || rawIp === 'Unknown') {
 						return;
 					}
 
@@ -30933,7 +30996,7 @@ IP range:
 
 		// 将 IP 类型转换为中文并添加样式
 		function formatIpType(type) {
-			if (!type) return '<span class="ip-type-unknown">未知</span>';
+			if (!type) return '<span class="ip-type-unknown">Unknown</span>';
 
 			const typeMap = {
 				'isp': { text: '住宅', class: 'ip-type-residential' },
@@ -30959,8 +31022,8 @@ IP range:
 		// 计算综合滥用评分
 		function calculateAbuseScore(companyScore, asnScore, securityFlags = {}) {
 			// 如果两个分数都无效，返回null
-			if (!companyScore || companyScore === '未知') companyScore = 0;
-			if (!asnScore || asnScore === '未知') asnScore = 0;
+			if (!companyScore || companyScore === 'Unknown') companyScore = 0;
+			if (!asnScore || asnScore === 'Unknown') asnScore = 0;
 
 			const company = parseFloat(companyScore) || 0;
 			const asn = parseFloat(asnScore) || 0;
@@ -31009,7 +31072,7 @@ IP range:
 
 		// 格式化滥用评分为百分比
 		function formatAbuseScorePercentage(score) {
-			if (score === null || score === undefined) return '未知';
+			if (score === null || score === undefined) return 'Unknown';
 
 			const percentage = score * 100;
 			return percentage.toFixed(2) + '%';
@@ -31138,8 +31201,8 @@ IP range:
 			};
 
 			const combinedScore = calculateAbuseScore(companyScore, asnScore, securityFlags);
-			let riskControlHTML = '未知';
-			let riskLevel = '未知';
+			let riskControlHTML = 'Unknown';
+			let riskLevel = 'Unknown';
 			let badgeClass = 'badge-info';
 
 			if (combinedScore !== null) {
@@ -31180,15 +31243,15 @@ IP range:
 									<div class="ip-detail-section-title">📍 基本信息</div>
 									<div class="ip-detail-item" title="当前查询的公网 IP 地址，用于在互联网上唯一标识设备">
 										<span class="ip-detail-label">IP 地址</span>
-										<span class="ip-detail-value">${data.ip || '未知'}</span>
+										<span class="ip-detail-value">${data.ip || 'Unknown'}</span>
 									</div>
 									<div class="ip-detail-item" title="IP 地址的物理位置，通过 IP 地址段分配数据库推算得出，包括国家/地区、州省和城市信息">
 										<span class="ip-detail-label">地理位置</span>
-										<span class="ip-detail-value">${data.location?.country_code ? `[${data.location.country_code}]` : ''}${data.location?.country || ''} ${[data.location?.state, data.location?.city].filter(Boolean).join('/') || '未知'}</span>
+										<span class="ip-detail-value">${data.location?.country_code ? `[${data.location.country_code}]` : ''}${data.location?.country || ''} ${[data.location?.state, data.location?.city].filter(Boolean).join('/') || 'Unknown'}</span>
 									</div>
 									<div class="ip-detail-item" title="该 IP 地址所在地区使用的标准时区，格式为洲/城市，如 Asia/Shanghai">
 										<span class="ip-detail-label">时区</span>
-										<span class="ip-detail-value">${data.location?.timezone || '未知'}</span>
+										<span class="ip-detail-value">${data.location?.timezone || 'Unknown'}</span>
 									</div>
 									<div class="ip-detail-item" title="IP 的网络类型:【住宅】家庭宽带、【机房】数据中心或云服务器、【商用】企业专线。左侧为运营商分类，右侧为 ASN (自治系统)分类">
 										<span class="ip-detail-label">运营商 / ASN 类型</span>
@@ -31281,7 +31344,7 @@ IP range:
 							</div>
 							<div class="ip-detail-popup-item">
 								<span class="ip-detail-popup-label">国家:</span>
-								<span class="ip-detail-popup-value">[${data.location?.country_code || '-'}]${data.location?.country || '未知'}</span>
+								<span class="ip-detail-popup-value">[${data.location?.country_code || '-'}]${data.location?.country || 'Unknown'}</span>
 							</div>
 							<div class="ip-detail-popup-item">
 								<span class="ip-detail-popup-label">落地IP:</span>
@@ -31293,7 +31356,7 @@ IP range:
 							</div>
 							<div class="ip-detail-popup-item">
 								<span class="ip-detail-popup-label">运营商:</span>
-								<span class="ip-detail-popup-value">${data.company?.name || '未知'}</span>
+								<span class="ip-detail-popup-value">${data.company?.name || 'Unknown'}</span>
 							</div>
 						</div>
 					`;
@@ -31781,7 +31844,7 @@ IP range:
 				</div>
 				<div class="ip-detail-popup-item">
 					<span class="ip-detail-popup-label">运营商:</span>
-					<span class="ip-detail-popup-value">${proxyData.asOrganization || '未知'}</span>
+					<span class="ip-detail-popup-value">${proxyData.asOrganization || 'Unknown'}</span>
 				</div>
 			`;
 			proxyMaps[type].marker.bindPopup(popupContent, { offset: L.point(0, -32) }).openPopup();
@@ -31849,7 +31912,7 @@ IP range:
 				let flat = '<option value="">-- 请选择地区 --</option>';
 				Object.entries(window[config.countryMap] || {}).forEach(([code, proxies]) => {
 					const regionCode = code || CHAIN_SSTP_UNKNOWN_REGION;
-					const label = regionCode === CHAIN_SSTP_UNKNOWN_REGION ? '未知地区' : regionCode;
+					const label = regionCode === CHAIN_SSTP_UNKNOWN_REGION ? 'Unknown region' : regionCode;
 					flat += `<option value="${regionCode}">${buildCountryFlagEmoji(regionCode)} ${label}(${proxies.length})</option>`;
 				});
 				select.innerHTML = flat;
