@@ -23866,6 +23866,36 @@ IP range:
 			}
 		}
 
+		// English labels for the remote SUBCONFIG preset list. Values stay unchanged.
+		const SUB_CONFIG_LABELS_EN = {
+			'默认版 分组比较全 ACL4SSR_Online': 'Default · full groups · ACL4SSR_Online',
+			'更多去广告 ACL4SSR_Online_AdblockPlus': 'More ad blocking · ACL4SSR_Online_AdblockPlus',
+			'多国分组 ACL4SSR_Online_MultiCountry': 'Multi-country groups · ACL4SSR_Online_MultiCountry',
+			'无自动测速 ACL4SSR_Online_NoAuto': 'No auto speed test · ACL4SSR_Online_NoAuto',
+			'无广告拦截规则 ACL4SSR_Online_NoReject': 'No ad-block rules · ACL4SSR_Online_NoReject',
+			'精简版 ACL4SSR_Online_Mini': 'Mini · ACL4SSR_Online_Mini',
+			'精简版 更多去广告 ACL4SSR_Online_Mini_AdblockPlus': 'Mini · more ad blocking · ACL4SSR_Online_Mini_AdblockPlus',
+			'精简版 不带自动测速 ACL4SSR_Online_Mini_NoAuto': 'Mini · no auto speed test · ACL4SSR_Online_Mini_NoAuto',
+			'精简版 带故障转移 ACL4SSR_Online_Mini_Fallback': 'Mini · failover · ACL4SSR_Online_Mini_Fallback',
+			'精简版 自动测速、故障转移、负载均衡 ACL4SSR_Online_Mini_MultiMode': 'Mini · auto test, failover, load balancing · ACL4SSR_Online_Mini_MultiMode',
+			'精简版 带港美日国家 ACL4SSR_Online_Mini_MultiCountry': 'Mini · HK/US/JP groups · ACL4SSR_Online_Mini_MultiCountry',
+			'全分组 重度用户使用 ACL4SSR_Online_Full': 'Full groups · power users · ACL4SSR_Online_Full',
+			'全分组 多模式 重度用户使用 ACL4SSR_Online_Full_MultiMode': 'Full groups · multi-mode · power users · ACL4SSR_Online_Full_MultiMode',
+			'全分组 无自动测速 重度用户使用 ACL4SSR_Online_Full_NoAuto': 'Full groups · no auto speed test · power users · ACL4SSR_Online_Full_NoAuto',
+			'全分组 重度用户使用 更多去广告 ACL4SSR_Online_Full_AdblockPlus': 'Full groups · power users · more ad blocking · ACL4SSR_Online_Full_AdblockPlus',
+			'全分组 重度用户使用 奈飞全量 ACL4SSR_Online_Full_Netflix': 'Full groups · power users · full Netflix · ACL4SSR_Online_Full_Netflix',
+			'全分组 重度用户使用 谷歌细分 ACL4SSR_Online_Full_Google': 'Full groups · power users · detailed Google · ACL4SSR_Online_Full_Google',
+			'默认版 识别港美地区 CM_Online': 'Default · detect HK/US · CM_Online',
+			'精简版 自动测速、故障转移、负载均衡 识别CloudFlareCDN CM_Online_Mini_MultiMode_CF': 'Mini · auto test, failover, load balancing · Cloudflare CDN · CM_Online_Mini_MultiMode_CF',
+			'精简版 不带自动测速(有效减少-1情况) 识别CloudFlareCDN CM_Online_Mini_NoAuto_CF': 'Mini · no auto test (reduces -1) · Cloudflare CDN · CM_Online_Mini_NoAuto_CF',
+			'识别港美地区 负载均衡 CM_Online_MultiCountry': 'Detect HK/US · load balancing · CM_Online_MultiCountry',
+			'识别港美地区、CloudFlareCDN 负载均衡 CF节点专用 CM_Online_MultiCountry_CF': 'Detect HK/US · Cloudflare CDN · load balancing · CF nodes · CM_Online_MultiCountry_CF',
+			'识别多地区分组 CM_Online_Full': 'Multi-region groups · CM_Online_Full',
+			'识别多地区、CloudFlareCDN 分组 CF节点专用 CM_Online_Full_CF': 'Multi-region · Cloudflare CDN groups · CF nodes · CM_Online_Full_CF',
+			'识别多地区 负载均衡 CM_Online_Full_MultiMode': 'Multi-region · load balancing · CM_Online_Full_MultiMode',
+			'识别多地区、CloudFlareCDN 负载均衡 CF节点专用 CM_Online_Full_MultiMode_CF': 'Multi-region · Cloudflare CDN · load balancing · CF nodes · CM_Online_Full_MultiMode_CF'
+		};
+
 		// 填充SubConfig下拉框
 		function populateSubConfigSelect() {
 			const select = document.getElementById('subConfigSelect');
@@ -23879,13 +23909,13 @@ IP range:
 			if (subConfigData && Array.isArray(subConfigData)) {
 				subConfigData.forEach(group => {
 					const optgroup = document.createElement('optgroup');
-					optgroup.label = group.label;
+					optgroup.label = SUB_CONFIG_LABELS_EN[group.label] || group.label;
 
 					if (group.options && Array.isArray(group.options)) {
 						group.options.forEach(option => {
 							const opt = document.createElement('option');
 							opt.value = option.value;
-							opt.textContent = option.label;
+							opt.textContent = SUB_CONFIG_LABELS_EN[option.label] || option.label;
 							optgroup.appendChild(opt);
 						});
 					}
