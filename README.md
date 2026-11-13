@@ -20,11 +20,6 @@
 - English UI for `/login`, `/admin`, `/noADMIN`, and `/noKV`.
 - The Pages project supports an optional `PAGES_URL` environment variable. When it is set, panel pages are proxied from that origin. When it is unset, this fork uses its default English panel.
 - No changes to VLESS/Trojan/Shadowsocks handling, subscription generation, KV keys, or API routes.
-- This fork's deployment:
-  - Main site: <https://edgetunnel-en-b1g.pages.dev>
-  - Admin login: <https://edgetunnel-en-b1g.pages.dev/login>
-  - Admin panel: <https://edgetunnel-en-b1g.pages.dev/admin>
-  - Static panel project: <https://edgetunnel-en-panel.pages.dev>
 
 ### ✨ Core features
 
@@ -45,7 +40,7 @@
 > [!WARNING]
 > ⚠️ **Error 1101**: [video walkthrough](https://www.youtube.com/watch?v=r4uVTEJptdE)
 
-The main app is deployed as a Cloudflare Pages project. The English panel is hosted separately at `https://edgetunnel-en-panel.pages.dev` and is proxied automatically, so you do not need to deploy the panel yourself.
+The main app is deployed as a Cloudflare Pages project. The English panel is hosted separately and is proxied automatically, so you do not need to deploy the panel yourself.
 
 ### 🛠️ Pages upload deployment **Recommended** — [guide](https://cmliussss.com/p/edt2/)
 
@@ -116,7 +111,7 @@ The main app is deployed as a Cloudflare Pages project. The English panel is hos
 | **PRELOAD_RACE_DIAL** | ❌ | `1` or `true` | Preload race dialing is **off** by default; set to `1` or `true` to enable it. |
 | **TCP_CONCURRENT_DIAL** | ❌ | `2` | Number of concurrent TCP dials. Default: `2`. When set, it no longer automatically drops to a single route on China Mobile networks. |
 | **PROXY_CONCURRENT_DIAL** | ❌ | `1` | Number of concurrent proxy dials. Default: `1`. Higher values connect faster but switch IPs more often. |
-| **PAGES_URL** | ❌ | `https://edgetunnel-en-panel.pages.dev` | Origin of the English panel static site. When omitted, this fork uses its default English panel. |
+| **PAGES_URL** | ❌ | `https://your-panel.pages.dev` | Origin of the English panel static site. When omitted, this fork uses its default English panel. |
 
 ---
 
